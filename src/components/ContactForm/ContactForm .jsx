@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addContacts } from 'redux/operations';
-import {fetchContacts} from '../../redux/operations'
-
 
 import { Input, Form, Button } from './ContactForm.module';
 
@@ -10,8 +8,7 @@ export default function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setNumber] = useState('');
   
-  fetchContacts();
-
+ 
   const dispatch = useDispatch();
 
   function handelInputChange(event) {
@@ -37,6 +34,8 @@ export default function ContactForm() {
     dispatch(addContacts(name, phone));
     reset();
   }
+  console.log(`name`, name);
+  console.log(`phone`, phone);
 
   return (
     <Form onSubmit={handelSubmit}>
