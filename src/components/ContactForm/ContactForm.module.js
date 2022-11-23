@@ -12,7 +12,7 @@ export const Form = styled.form`
   justify-content: center;
 
   padding: 15px;
-  width: 300px;
+  width: 400px;
   border: 1px solid gray;
 `;
 

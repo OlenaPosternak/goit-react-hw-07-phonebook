@@ -28,7 +28,6 @@ export const contactsSlice = createSlice({
     [fetchContacts.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      console.log(`action.payload`,action.payload);
       state.contacts = action.payload;
     },
     [fetchContacts.rejected]: handleRejected,
@@ -37,16 +36,16 @@ export const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
 
-      const contactName = [];
+    //   const contactName = [];
 
-      for (const contact of state.contacts) {
-        contactName.push(contact.contact);
-      }
+    //   for (const contact of state.contacts) {
+    //     contactName.push(contact.contact);
+    //   }
 
-      if (contactName.includes(action.payload.contact)) {
-        alert(`${action.payload.contact} is already in contacts list`);
-        return;
-      }
+    //   if (contactName.includes(action.payload.contact)) {
+    //     alert(`${action.payload.contact} is already in contacts list`);
+    //     return;
+    //   }
 
       state.contacts.push(action.payload);
     },
@@ -59,7 +58,6 @@ export const contactsSlice = createSlice({
     },
     [deleteContacts.rejected]: handleRejected,
   },
-  
 });
 
 // export const contactsSlice = createSlice({
@@ -106,6 +104,6 @@ export const contactsSlice = createSlice({
 // });
 
 // Генератори екшенів
-export const { filterContacts } =  contactsSlice.actions;
+export const { filterContacts } = contactsSlice.actions;
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;

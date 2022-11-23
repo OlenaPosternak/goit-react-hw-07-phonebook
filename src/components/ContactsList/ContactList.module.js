@@ -7,7 +7,7 @@ export const ListOfContact = styled.ul`
 `;
 
 export const Container = styled.div`
-  width: 300px;
+  width: 400px;
   margin: 0;
   border: 1px solid gray;
   padding: 20px;

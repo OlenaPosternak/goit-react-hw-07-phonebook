@@ -8,7 +8,8 @@ import { Input, Form, Button } from './ContactForm.module';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setNumber] = useState('');
+  
   fetchContacts();
 
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function ContactForm() {
       case 'name':
         setName(event.currentTarget.value);
         break;
-      case 'number':
+      case 'phone':
         setNumber(event.currentTarget.value);
         break;
       default:
@@ -33,7 +34,7 @@ export default function ContactForm() {
 
   function handelSubmit(event) {
     event.preventDefault();
-    dispatch(addContacts(name, number));
+    dispatch(addContacts(name, phone));
     reset();
   }
 
@@ -58,8 +59,8 @@ export default function ContactForm() {
       </label>
       <Input
         type="tel"
-        name="number"
-        value={number}
+        name="phone"
+        value={phone}
         onChange={handelInputChange}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
