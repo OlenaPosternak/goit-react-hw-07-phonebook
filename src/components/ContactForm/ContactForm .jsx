@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/operations';
+import { getContacts } from '../../redux/selectors';
 
 import { Input, Form, Button } from './ContactForm.module';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setNumber] = useState('');
-  
- 
+
   const dispatch = useDispatch();
+  const allContacts = useSelector(getContacts);
 
   function handelInputChange(event) {
     switch (event.currentTarget.name) {
@@ -31,15 +32,23 @@ export default function ContactForm() {
 
   function handelSubmit(event) {
     event.preventDefault();
-    dispatch(addContacts(name, phone));
+    const contactName = [];
+
+    for (const contact of allContacts) {
+      contactName.push(contact.name);
+    }
+
+    if (contactName.includes(name)) {
+      alert(`${name} is already in contacts list`);
+      return;
+    }
+    dispatch(addContacts({ name, phone }));
     reset();
   }
-  console.log(`name`, name);
-  console.log(`phone`, phone);
 
   return (
     <Form onSubmit={handelSubmit}>
-      <label >
+      <label>
         <span>Name</span>
       </label>
       <Input
@@ -53,7 +62,7 @@ export default function ContactForm() {
         required
       />
 
-      <label >
+      <label>
         <span>Number</span>
       </label>
       <Input
@@ -67,9 +76,7 @@ export default function ContactForm() {
       />
 
       <label>
-        <Button type="submit">
-          Add contact
-        </Button>
+        <Button type="submit">Add contact</Button>
       </label>
     </Form>
   );
