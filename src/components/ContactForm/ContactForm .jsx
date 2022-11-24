@@ -32,6 +32,7 @@ export default function ContactForm() {
 
   function handelSubmit(event) {
     event.preventDefault();
+
     const contactName = [];
 
     for (const contact of allContacts) {
