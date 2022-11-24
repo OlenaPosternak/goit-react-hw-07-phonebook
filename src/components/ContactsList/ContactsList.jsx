@@ -20,17 +20,11 @@ export const ContactsList = () => {
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
 
-  //   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
-  // Перенесення логіки до селекторів
-  // const visibleContacts = contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase().trim())
-  //   );
 
   return (
     <Container>
